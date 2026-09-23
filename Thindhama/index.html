@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Thindhama Biryani — a cinematic 3D food experience.">
+  <title>Thindhama — Biryani Beyond Ordinary</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/a2e0e6f3b7.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="noise"></div>
+  <div class="cursor-glow"></div>
+
+  <header class="nav-wrap" id="home">
+    <nav class="navbar">
+      <a class="brand" href="#home" aria-label="Thindhama home">
+        <span class="brand-mark">
+          <span>TH</span>
+        </span>
+        <span class="brand-text">
+          <b>BIRYANI</b>
+          <small>THINDHAMA</small>
+        </span>
+      </a>
+
+      <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#menu">Menu</a>
+        <a href="#story">Story</a>
+        <a href="#visit">Visit</a>
+        <button class="nav-order" data-scroll="#menu">Order Now <span>↗</span></button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero section">
+      <div class="hero-bg"></div>
+      <div class="hero-orb orb-one"></div>
+      <div class="hero-orb orb-two"></div>
+
+      <div class="hero-copy reveal">
+        <p class="eyebrow"><span></span> Hyderabad soul • Dehradun nights</p>
+        <h1>Rice.<br><em>Fire.</em><br>Story.</h1>
+        <p class="hero-sub">
+          Slow-cooked layers, fearless spice and the kind of aroma
+          that makes “just one bite” impossible.
+        </p>
+        <div class="hero-actions">
+          <button class="primary-btn" data-scroll="#menu">Explore the menu <span>↗</span></button>
+          <a class="ghost-btn" href="#story">Our story <span>↓</span></a>
+        </div>
+      </div>
+
+      <div class="hero-dish tilt-card reveal">
+        <div class="dish-shadow"></div>
+        <div class="dish-ring"></div>
+        <img
+          src="https://images.pexels.com/photos/34159106/pexels-photo-34159106/free-photo-of-traditional-kerala-chicken-biryani-in-clay-pot.jpeg?auto=compress&w=1260&h=750&dpr=2"
+          alt="Biryani served in a traditional clay pot"
+        >
+        <div class="dish-tag">
+          <span>01</span>
+          <b>Signature</b>
+          <small>Clay-pot chicken biryani</small>
+        </div>
+      </div>
+
+      <div class="scroll-cue"><span></span> SCROLL TO TASTE</div>
+    </section>
+
+    <section class="marquee">
+      <div>HANDI BIRYANI ✦ HOUSE SPICE ✦ SLOW FIRE ✦ EXTRA LOVE ✦ HANDI BIRYANI ✦ HOUSE SPICE ✦</div>
+    </section>
+
+    <section class="section menu-section" id="menu">
+      <div class="section-heading reveal">
+        <div>
+          <p class="eyebrow"><span></span> The menu</p>
+          <h2>Built in <em>layers.</em></h2>
+        </div>
+        <p>Choose your mood. Every plate is designed around a different spice profile.</p>
+      </div>
+
+      <div class="filter-bar reveal">
+        <button class="filter active" data-filter="all">All</button>
+        <button class="filter" data-filter="biryani">Biryani</button>
+        <button class="filter" data-filter="starter">Starters</button>
+        <button class="filter" data-filter="sweet">Sweet</button>
+      </div>
+
+      <div class="menu-grid">
+        <article class="food-card tilt-card reveal" data-category="biryani">
+          <div class="food-number">01</div>
+          <img src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=900&q=85" alt="Biryani dish">
+          <div class="card-content">
+            <span>Royal / Smoky</span>
+            <h3>Thindhama Special</h3>
+            <p>Chicken, saffron rice, caramelised onion and our house masala.</p>
+            <div class="card-bottom"><b>₹249</b><button class="add-btn">+</button></div>
+          </div>
+        </article>
+
+        <article class="food-card tilt-card reveal" data-category="biryani">
+          <div class="food-number">02</div>
+          <img src="https://images.unsplash.com/photo-1631515242808-497c3fbd3972?auto=format&fit=crop&w=900&q=85" alt="Chicken biryani">
+          <div class="card-content">
+            <span>Hot / Aromatic</span>
+            <h3>Fire Chicken Handi</h3>
+            <p>Long-grain rice, charred chicken, mint and a punchy chilli finish.</p>
+            <div class="card-bottom"><b>₹279</b><button class="add-btn">+</button></div>
+          </div>
+        </article>
+
+        <article class="food-card tilt-card reveal" data-category="starter">
+          <div class="food-number">03</div>
+          <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=900&q=85" alt="Indian starter">
+          <div class="card-content">
+            <span>Crispy / Tangy</span>
+            <h3>Masala 65</h3>
+            <p>Crisp chicken tossed with curry leaf, pepper and a citrus glaze.</p>
+            <div class="card-bottom"><b>₹189</b><button class="add-btn">+</button></div>
+          </div>
+        </article>
+
+        <article class="food-card tilt-card reveal" data-category="starter">
+          <div class="food-number">04</div>
+          <img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=900&q=85" alt="Indian food platter">
+          <div class="card-content">
+            <span>Smoky / Creamy</span>
+            <h3>Charcoal Tikka</h3>
+            <p>Yoghurt-marinated chicken with a smoky tandoor crust.</p>
+            <div class="card-bottom"><b>₹219</b><button class="add-btn">+</button></div>
+          </div>
+        </article>
+
+        <article class="food-card tilt-card reveal" data-category="sweet">
+          <div class="food-number">05</div>
+          <img src="https://images.unsplash.com/photo-1599785209707-a456fc1337bb?auto=format&fit=crop&w=900&q=85" alt="Indian dessert">
+          <div class="card-content">
+            <span>Cold / Silky</span>
+            <h3>Kesar Kulfi</h3>
+            <p>Saffron, pistachio and condensed milk in a slow-set frozen bite.</p>
+            <div class="card-bottom"><b>₹119</b><button class="add-btn">+</button></div>
+          </div>
+        </article>
+
+        <article class="food-card tilt-card reveal" data-category="sweet">
+          <div class="food-number">06</div>
+          <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85" alt="Indian snack and dessert">
+          <div class="card-content">
+            <span>Warm / Sweet</span>
+            <h3>Gulab Jamun</h3>
+            <p>Soft milk dumplings, warm syrup and a whisper of cardamom.</p>
+            <div class="card-bottom"><b>₹99</b><button class="add-btn">+</button></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="story section" id="story">
+      <div class="story-visual tilt-card reveal">
+        <div class="story-frame"></div>
+        <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=1100&q=85" alt="Indian food served on a table">
+        <div class="floating-stamp">
+          <span>100%</span>
+          <small>House spice</small>
+        </div>
+      </div>
+
+      <div class="story-copy reveal">
+        <p class="eyebrow"><span></span> Why Thindhama?</p>
+        <h2>Not fast food.<br><em>Fast memories.</em></h2>
+        <p>
+          Thindhama is our take on the neighbourhood biryani house:
+          familiar enough to feel like home, dramatic enough to remember.
+          We build every plate around fragrance first, heat second and texture always.
+        </p>
+        <div class="stats">
+          <div><strong>12+</strong><span>house spices</span></div>
+          <div><strong>90m</strong><span>slow-fire ritual</span></div>
+          <div><strong>∞</strong><span>extra rice energy</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="experience section">
+      <div class="experience-panel reveal">
+        <div class="experience-copy">
+          <p class="eyebrow"><span></span> The ritual</p>
+          <h2>Open the lid.<br><em>Change the room.</em></h2>
+          <p>Steam, saffron, fried onion and a table that suddenly gets quiet.</p>
+          <button class="primary-btn" data-scroll="#visit">Find your table <span>↗</span></button>
+        </div>
+        <div class="steam steam-a"></div>
+        <div class="steam steam-b"></div>
+        <div class="experience-dish">
+          <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=1000&q=85" alt="Indian biryani meal">
+        </div>
+      </div>
+    </section>
+
+    <section class="visit section" id="visit">
+      <div class="visit-card reveal">
+        <div>
+          <p class="eyebrow"><span></span> Come hungry</p>
+          <h2>Thindhama<br><em>after dark.</em></h2>
+          <p class="visit-copy">Open daily · 11:30 AM — 11:00 PM<br>Dehradun, Uttarakhand</p>
+        </div>
+        <div class="visit-actions">
+          <a class="primary-btn" href="https://www.google.com/maps/search/?api=1&query=Dehradun%20Uttarakhand" target="_blank" rel="noreferrer">Open maps ↗</a>
+          <a class="ghost-btn" href="tel:+919999999999">Call the kitchen <span>☎</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-brand">
+      <span class="brand-mark small"><span>TH</span></span>
+      <span><b>THINDHAMA</b><small>BIRYANI HOUSE</small></span>
+    </div>
+    <p>Made with rice, fire & a little chaos.</p>
+    <div class="footer-links">
+      <a href="#home">Top</a>
+      <a href="#menu">Menu</a>
+      <a href="#visit">Visit</a>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast">Added to your feast ✦</div>
+
+  <script src="script.js"></script>
+</body>
+</html>

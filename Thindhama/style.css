@@ -1,0 +1,1834 @@
+/* =========================================================
+   THINDHAMA — 3D SPICE HOUSE
+   ========================================================= */
+
+
+/* =========================================================
+   1. ROOT VARIABLES
+   ========================================================= */
+
+:root {
+    --bg: #100b09;
+    --panel: #1b100d;
+    --panel-2: #241512;
+
+    --cream: #fff2d8;
+    --muted: #b7a89a;
+
+    --orange: #ff7a18;
+    --gold: #f2b84b;
+    --red: #d93b24;
+    --lime: #d7f23b;
+
+    --line: rgba(255, 240, 210, 0.12);
+
+    --shadow: 0 25px 80px rgba(0, 0, 0, 0.42);
+}
+
+
+/* =========================================================
+   2. GLOBAL STYLES
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+
+    color: var(--cream);
+
+    background:
+        radial-gradient(
+            circle at 80% 15%,
+            rgba(255, 91, 24, 0.14),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 15% 65%,
+            rgba(242, 184, 75, 0.08),
+            transparent 28%
+        ),
+        var(--bg);
+
+    font-family: "DM Sans", sans-serif;
+
+    overflow-x: hidden;
+}
+
+button,
+a {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
+}
+
+
+/* =========================================================
+   3. NOISE EFFECT
+   ========================================================= */
+
+.noise {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 50;
+
+    pointer-events: none;
+
+    opacity: 0.045;
+
+    background-image: url(
+        "data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E"
+    );
+}
+
+
+/* =========================================================
+   4. CURSOR GLOW
+   ========================================================= */
+
+.cursor-glow {
+    width: 260px;
+    height: 260px;
+
+    border-radius: 50%;
+
+    position: fixed;
+
+    z-index: 0;
+
+    pointer-events: none;
+
+    transform: translate(-50%, -50%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 122, 24, 0.12),
+            transparent 68%
+        );
+
+    mix-blend-mode: screen;
+}
+
+
+/* =========================================================
+   5. COMMON SECTION
+   ========================================================= */
+
+.section {
+    position: relative;
+
+    max-width: 1240px;
+
+    margin: auto;
+
+    padding: 120px 6vw;
+}
+
+
+/* =========================================================
+   6. NAVBAR
+   ========================================================= */
+
+.nav-wrap {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    z-index: 20;
+
+    padding: 16px 4vw;
+}
+
+
+/* Main navbar */
+
+.navbar {
+    max-width: 1240px;
+
+    margin: auto;
+
+    padding: 12px 16px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    border-radius: 24px;
+
+    background: rgba(16, 11, 9, 0.62);
+
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.2);
+}
+
+
+/* =========================================================
+   7. BRAND
+   ========================================================= */
+
+.brand {
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    text-decoration: none;
+}
+
+
+/* Brand circle */
+
+.brand-mark {
+    width: 48px;
+    height: 48px;
+
+    border-radius: 50%;
+
+    display: grid;
+
+    place-items: center;
+
+    border: 1px solid rgba(242, 184, 75, 0.7);
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #ff9b35,
+            #8b240f 55%,
+            #210d09
+        );
+
+    box-shadow:
+        inset 0 0 18px rgba(255, 255, 255, 0.08),
+        0 0 30px rgba(255, 122, 24, 0.1);
+
+    transform: rotate(-8deg);
+}
+
+
+/* Brand initials */
+
+.brand-mark span {
+    font-family: Cinzel, serif;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: -1px;
+}
+
+
+/* Brand text */
+
+.brand-text {
+    display: flex;
+
+    flex-direction: column;
+
+    line-height: 0.9;
+}
+
+
+/* Biryani */
+
+.brand-text b {
+    font-family: Cinzel, serif;
+
+    color: var(--gold);
+
+    font-size: 16px;
+
+    letter-spacing: 2px;
+}
+
+
+/* Thindhama */
+
+.brand-text small {
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    color: #e9d9c2;
+
+    margin-top: 4px;
+}
+
+
+/* =========================================================
+   8. NAVIGATION LINKS
+   ========================================================= */
+
+.nav-links {
+    display: flex;
+
+    align-items: center;
+
+    gap: 30px;
+}
+
+
+.nav-links a {
+    font-size: 13px;
+
+    text-decoration: none;
+
+    color: #c8bcb1;
+
+    transition: 0.25s;
+}
+
+
+.nav-links a:hover {
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   9. NAVBAR ORDER BUTTON
+   ========================================================= */
+
+.nav-order,
+.primary-btn {
+    border: 0;
+
+    border-radius: 999px;
+
+    padding: 12px 18px;
+
+    color: #1a0d08;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffb34d,
+            #ff6d1b
+        );
+
+    box-shadow:
+        0 10px 30px rgba(255, 111, 25, 0.22);
+
+    font-weight: 800;
+
+    transition: 0.25s;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    text-decoration: none;
+}
+
+
+.nav-order:hover,
+.primary-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+
+    box-shadow:
+        0 15px 40px rgba(255, 111, 25, 0.32);
+}
+
+
+.nav-order span,
+.primary-btn span {
+    font-size: 18px;
+}
+
+
+/* Mobile menu button */
+
+.menu-toggle {
+    display: none;
+
+    border: 0;
+
+    background: none;
+
+    color: white;
+
+    font-size: 22px;
+}
+
+
+/* =========================================================
+   10. HERO SECTION
+   ========================================================= */
+
+.hero {
+    min-height: 100vh;
+
+    max-width: none;
+
+    padding: 170px 8vw 80px;
+
+    display: grid;
+
+    grid-template-columns: 1.05fr 0.95fr;
+
+    align-items: center;
+
+    gap: 4vw;
+
+    overflow: hidden;
+}
+
+
+/* Hero background */
+
+.hero-bg {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: -3;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(16, 11, 9, 0.98) 0%,
+            rgba(16, 11, 9, 0.8) 42%,
+            rgba(16, 11, 9, 0.18) 100%
+        ),
+        url("thindhama-food-hero.jpg") center / cover;
+
+    filter: saturate(1.15);
+}
+
+
+/* Hero bottom gradient */
+
+.hero-bg::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            0deg,
+            var(--bg),
+            transparent 25%,
+            rgba(16, 11, 9, 0.2)
+        );
+}
+
+
+/* Hero text */
+
+.hero-copy {
+    max-width: 620px;
+
+    z-index: 2;
+}
+
+
+/* Eyebrow */
+
+.eyebrow {
+    color: #d9c8b5;
+
+    text-transform: uppercase;
+
+    letter-spacing: 3px;
+
+    font-size: 11px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin: 0 0 20px;
+}
+
+
+.eyebrow span {
+    width: 35px;
+
+    height: 1px;
+
+    background: var(--orange);
+
+    display: block;
+}
+
+
+/* Hero headings */
+
+.hero h1,
+.section-heading h2,
+.story-copy h2,
+.experience-copy h2,
+.visit-card h2 {
+    font-family: Cinzel, serif;
+
+    line-height: 0.9;
+
+    letter-spacing: -2px;
+
+    margin: 0;
+}
+
+
+.hero h1 {
+    font-size: clamp(70px, 10vw, 140px);
+
+    text-transform: uppercase;
+}
+
+
+/* Orange highlighted words */
+
+.hero h1 em,
+.section-heading h2 em,
+.story-copy h2 em,
+.experience-copy h2 em,
+.visit-card h2 em {
+    color: var(--orange);
+
+    font-style: normal;
+
+    text-shadow:
+        0 0 35px rgba(255, 122, 24, 0.18);
+}
+
+
+/* Hero description */
+
+.hero-sub {
+    max-width: 500px;
+
+    color: #c5b5a5;
+
+    line-height: 1.8;
+
+    font-size: 16px;
+
+    margin: 28px 0;
+}
+
+
+/* Hero buttons */
+
+.hero-actions {
+    display: flex;
+
+    align-items: center;
+
+    gap: 22px;
+}
+
+
+.ghost-btn {
+    color: #e7d8c8;
+
+    text-decoration: none;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+
+    padding-bottom: 5px;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   11. HERO 3D FOOD
+   ========================================================= */
+
+.hero-dish {
+    height: 560px;
+
+    position: relative;
+
+    display: grid;
+
+    place-items: center;
+
+    perspective: 1200px;
+}
+
+
+/* Food image */
+
+.hero-dish img {
+    width: min(90%, 540px);
+
+    aspect-ratio: 1;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 12px solid rgba(255, 240, 210, 0.08);
+
+    box-shadow:
+        0 50px 100px rgba(0, 0, 0, 0.65),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+
+    transform:
+        rotate(-7deg)
+        translateZ(40px);
+
+    transition: transform 0.2s ease-out;
+}
+
+
+/* Rotating ring */
+
+.dish-ring {
+    position: absolute;
+
+    width: 74%;
+
+    aspect-ratio: 1;
+
+    border-radius: 50%;
+
+    border: 1px dashed rgba(242, 184, 75, 0.42);
+
+    animation: spin 24s linear infinite;
+}
+
+
+/* Image shadow */
+
+.dish-shadow {
+    position: absolute;
+
+    width: 65%;
+
+    height: 10%;
+
+    bottom: 7%;
+
+    border-radius: 50%;
+
+    background: #000;
+
+    filter: blur(35px);
+
+    opacity: 0.65;
+}
+
+
+/* Dish information card */
+
+.dish-tag {
+    position: absolute;
+
+    bottom: 16%;
+
+    left: 8%;
+
+    width: 180px;
+
+    padding: 16px;
+
+    border: 1px solid var(--line);
+
+    border-radius: 18px;
+
+    background: rgba(20, 12, 9, 0.7);
+
+    backdrop-filter: blur(15px);
+
+    transform: translateZ(80px);
+}
+
+
+.dish-tag span {
+    color: var(--orange);
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+}
+
+
+.dish-tag b {
+    display: block;
+
+    font-family: Cinzel, serif;
+
+    margin: 7px 0;
+}
+
+
+.dish-tag small {
+    color: #a99b8e;
+}
+
+
+/* =========================================================
+   12. HERO FLOATING ORBS
+   ========================================================= */
+
+.hero-orb {
+    position: absolute;
+
+    border-radius: 50%;
+
+    filter: blur(1px);
+
+    opacity: 0.4;
+}
+
+
+/* Large orb */
+
+.orb-one {
+    width: 180px;
+
+    height: 180px;
+
+    right: 8%;
+
+    top: 15%;
+
+    background:
+        radial-gradient(
+            circle at 30% 30%,
+            #f2b84b,
+            #5a1b0c 60%,
+            transparent 70%
+        );
+
+    animation:
+        float 6s ease-in-out infinite;
+}
+
+
+/* Small orb */
+
+.orb-two {
+    width: 80px;
+
+    height: 80px;
+
+    left: 45%;
+
+    bottom: 12%;
+
+    background: #e34a1d;
+
+    box-shadow:
+        0 0 50px #e34a1d;
+
+    animation:
+        float 4s ease-in-out infinite reverse;
+}
+
+
+/* Scroll indicator */
+
+.scroll-cue {
+    position: absolute;
+
+    bottom: 30px;
+
+    left: 8vw;
+
+    color: #7f7064;
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+
+    display: flex;
+
+    gap: 10px;
+
+    align-items: center;
+}
+
+
+.scroll-cue span {
+    width: 25px;
+
+    height: 1px;
+
+    background: #7f7064;
+}
+
+
+/* =========================================================
+   13. MARQUEE
+   ========================================================= */
+
+.marquee {
+    overflow: hidden;
+
+    border-block: 1px solid var(--line);
+
+    padding: 15px 0;
+
+    color: #e7b76e;
+
+    background: #120c09;
+
+    white-space: nowrap;
+}
+
+
+.marquee div {
+    display: inline-block;
+
+    animation:
+        marquee 22s linear infinite;
+
+    font-family: Cinzel, serif;
+
+    letter-spacing: 4px;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   14. MENU SECTION
+   ========================================================= */
+
+.section-heading {
+    display: flex;
+
+    align-items: end;
+
+    justify-content: space-between;
+
+    gap: 40px;
+
+    margin-bottom: 40px;
+}
+
+
+.section-heading h2 {
+    font-size: clamp(50px, 7vw, 92px);
+}
+
+
+.section-heading > p {
+    max-width: 360px;
+
+    color: #a99a8c;
+
+    line-height: 1.8;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   15. MENU FILTER
+   ========================================================= */
+
+.filter-bar {
+    display: flex;
+
+    gap: 10px;
+
+    margin-bottom: 28px;
+}
+
+
+.filter {
+    border: 1px solid var(--line);
+
+    background: transparent;
+
+    color: #aa9a8b;
+
+    padding: 9px 17px;
+
+    border-radius: 999px;
+
+    transition: 0.25s;
+}
+
+
+.filter.active,
+.filter:hover {
+    background: #ff7a18;
+
+    color: #1a0d08;
+
+    border-color: #ff7a18;
+}
+
+
+/* =========================================================
+   16. FOOD GRID
+   ========================================================= */
+
+.menu-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+
+/* =========================================================
+   17. FOOD CARD
+   ========================================================= */
+
+.food-card {
+    position: relative;
+
+    overflow: hidden;
+
+    min-height: 500px;
+
+    border: 1px solid var(--line);
+
+    border-radius: 26px;
+
+    background:
+        linear-gradient(
+            160deg,
+            #251713,
+            #130d0b
+        );
+
+    transition:
+        opacity 0.3s,
+        transform 0.3s;
+
+    transform-style: preserve-3d;
+
+    will-change: transform;
+}
+
+
+.food-card.hide {
+    display: none;
+}
+
+
+/* Food image */
+
+.food-card img {
+    width: 100%;
+
+    height: 270px;
+
+    object-fit: cover;
+
+    display: block;
+
+    filter: saturate(1.1);
+
+    transition: transform 0.6s;
+}
+
+
+.food-card:hover img {
+    transform: scale(1.06);
+}
+
+
+/* Card number */
+
+.food-number {
+    position: absolute;
+
+    top: 16px;
+
+    right: 16px;
+
+    z-index: 2;
+
+    background: rgba(0, 0, 0, 0.55);
+
+    padding: 7px 10px;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+}
+
+
+/* Card content */
+
+.card-content {
+    padding: 22px;
+}
+
+
+.card-content > span {
+    color: var(--orange);
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 2px;
+}
+
+
+.card-content h3 {
+    font-family: Cinzel, serif;
+
+    font-size: 25px;
+
+    margin: 10px 0;
+}
+
+
+.card-content p {
+    color: #9f9082;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+    min-height: 44px;
+}
+
+
+/* Card bottom */
+
+.card-bottom {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-top: 20px;
+}
+
+
+.card-bottom b {
+    font-family: Cinzel, serif;
+
+    color: var(--gold);
+
+    font-size: 20px;
+}
+
+
+/* Add button */
+
+.add-btn {
+    width: 38px;
+
+    height: 38px;
+
+    border-radius: 50%;
+
+    border: 1px solid var(--line);
+
+    background: #2a1711;
+
+    color: white;
+
+    font-size: 22px;
+
+    transition: 0.25s;
+}
+
+
+.add-btn:hover {
+    background: var(--orange);
+
+    color: #160b07;
+
+    transform: rotate(90deg);
+}
+
+
+/* =========================================================
+   18. STORY SECTION
+   ========================================================= */
+
+.story {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 9vw;
+
+    align-items: center;
+}
+
+
+/* Story image container */
+
+.story-visual {
+    position: relative;
+
+    transform-style: preserve-3d;
+}
+
+
+/* Story image */
+
+.story-visual img {
+    width: 100%;
+
+    height: 580px;
+
+    object-fit: cover;
+
+    border-radius: 28px;
+
+    display: block;
+
+    filter: saturate(0.9);
+}
+
+
+/* Image frame */
+
+.story-frame {
+    position: absolute;
+
+    inset: 18px;
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    border-radius: 20px;
+
+    z-index: 1;
+
+    pointer-events: none;
+}
+
+
+/* Floating stamp */
+
+.floating-stamp {
+    position: absolute;
+
+    right: -30px;
+
+    bottom: 35px;
+
+    padding: 22px;
+
+    background: #f2b84b;
+
+    color: #1b0d08;
+
+    border-radius: 18px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    transform: rotate(6deg);
+
+    box-shadow: var(--shadow);
+}
+
+
+.floating-stamp span {
+    font-family: Cinzel, serif;
+
+    font-size: 26px;
+
+    font-weight: 800;
+}
+
+
+.floating-stamp small {
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+
+/* Story heading */
+
+.story-copy h2 {
+    font-size: clamp(48px, 6vw, 82px);
+}
+
+
+.story-copy > p:not(.eyebrow) {
+    color: #aa9b8c;
+
+    line-height: 1.9;
+
+    font-size: 15px;
+
+    max-width: 520px;
+
+    margin: 28px 0;
+}
+
+
+/* =========================================================
+   19. STATISTICS
+   ========================================================= */
+
+.stats {
+    display: flex;
+
+    gap: 40px;
+
+    border-top: 1px solid var(--line);
+
+    padding-top: 25px;
+}
+
+
+.stats div {
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+.stats strong {
+    font-family: Cinzel, serif;
+
+    color: var(--gold);
+
+    font-size: 27px;
+}
+
+
+.stats span {
+    color: #85766a;
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+
+    margin-top: 5px;
+}
+
+
+/* =========================================================
+   20. EXPERIENCE SECTION
+   ========================================================= */
+
+.experience-panel {
+    min-height: 650px;
+
+    border-radius: 35px;
+
+    overflow: hidden;
+
+    position: relative;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(16, 9, 7, 0.95),
+            rgba(16, 9, 7, 0.25)
+        ),
+        url(
+            "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1600&q=85"
+        ) center / cover;
+
+    border: 1px solid var(--line);
+
+    box-shadow: var(--shadow);
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 7vw;
+}
+
+
+/* Experience text */
+
+.experience-copy {
+    max-width: 540px;
+
+    z-index: 2;
+}
+
+
+.experience-copy h2 {
+    font-size: clamp(48px, 6vw, 85px);
+}
+
+
+.experience-copy > p:not(.eyebrow) {
+    color: #b5a496;
+
+    line-height: 1.8;
+
+    max-width: 420px;
+
+    margin: 25px 0;
+}
+
+
+/* Experience food */
+
+.experience-dish {
+    position: absolute;
+
+    right: 4%;
+
+    bottom: -5%;
+
+    width: 52%;
+
+    max-width: 620px;
+
+    transform: rotate(8deg);
+
+    filter:
+        drop-shadow(
+            0 40px 35px rgba(0, 0, 0, 0.65)
+        );
+}
+
+
+.experience-dish img {
+    width: 100%;
+
+    aspect-ratio: 1.1;
+
+    object-fit: cover;
+
+    border-radius:
+        45% 45% 35% 35%;
+
+    border:
+        12px solid rgba(255, 255, 255, 0.06);
+}
+
+
+/* =========================================================
+   21. STEAM EFFECT
+   ========================================================= */
+
+.steam {
+    position: absolute;
+
+    width: 80px;
+
+    height: 250px;
+
+    border-radius: 50%;
+
+    border-left:
+        2px solid rgba(255, 255, 255, 0.12);
+
+    filter: blur(3px);
+
+    transform: rotate(12deg);
+
+    animation:
+        steam 5s ease-in-out infinite;
+}
+
+
+.steam-a {
+    right: 35%;
+
+    top: 10%;
+}
+
+
+.steam-b {
+    right: 25%;
+
+    top: 5%;
+
+    animation-delay: 1.4s;
+}
+
+
+/* =========================================================
+   22. VISIT SECTION
+   ========================================================= */
+
+.visit-card {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: end;
+
+    gap: 40px;
+
+    border: 1px solid var(--line);
+
+    border-radius: 30px;
+
+    padding: 60px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 122, 24, 0.13),
+            rgba(255, 255, 255, 0.025)
+        );
+}
+
+
+.visit-card h2 {
+    font-size: clamp(48px, 6vw, 80px);
+}
+
+
+.visit-copy {
+    color: #9f9082;
+
+    line-height: 1.8;
+
+    margin-top: 25px;
+}
+
+
+.visit-actions {
+    display: flex;
+
+    gap: 18px;
+
+    align-items: center;
+}
+
+
+/* =========================================================
+   23. FOOTER
+   ========================================================= */
+
+footer {
+    max-width: 1240px;
+
+    margin: auto;
+
+    padding: 35px 6vw 55px;
+
+    border-top: 1px solid var(--line);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+    color: #827368;
+
+    font-size: 12px;
+}
+
+
+/* Footer brand */
+
+.footer-brand {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: #d7c5b5;
+}
+
+
+.footer-brand > span:last-child {
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+.footer-brand b {
+    font-family: Cinzel, serif;
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+}
+
+
+.footer-brand small {
+    font-size: 7px;
+
+    letter-spacing: 2px;
+}
+
+
+/* Small logo */
+
+.brand-mark.small {
+    width: 35px;
+
+    height: 35px;
+}
+
+
+.brand-mark.small span {
+    font-size: 9px;
+}
+
+
+/* Footer links */
+
+.footer-links {
+    display: flex;
+
+    gap: 18px;
+}
+
+
+.footer-links a {
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   24. TOAST MESSAGE
+   ========================================================= */
+
+.toast {
+    position: fixed;
+
+    right: 25px;
+
+    bottom: 25px;
+
+    z-index: 80;
+
+    padding: 14px 20px;
+
+    border-radius: 999px;
+
+    background: #f2b84b;
+
+    color: #1b0d08;
+
+    font-weight: 800;
+
+    transform: translateY(100px);
+
+    opacity: 0;
+
+    transition: 0.35s;
+}
+
+
+.toast.show {
+    transform: translateY(0);
+
+    opacity: 1;
+}
+
+
+/* =========================================================
+   25. SCROLL REVEAL
+   ========================================================= */
+
+.reveal {
+    opacity: 0;
+
+    transform: translateY(35px);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+
+.reveal.visible {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   26. ANIMATIONS
+   ========================================================= */
+
+@keyframes spin {
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+@keyframes float {
+
+    50% {
+        transform: translateY(-20px);
+    }
+
+}
+
+
+@keyframes marquee {
+
+    to {
+        transform: translateX(-50%);
+    }
+
+}
+
+
+@keyframes steam {
+
+    50% {
+        transform:
+            translate(30px, -25px)
+            rotate(20deg);
+
+        opacity: 0.3;
+    }
+
+}
+
+
+/* =========================================================
+   27. TABLET RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .nav-links {
+        display: none;
+
+        position: absolute;
+
+        top: 78px;
+
+        left: 10px;
+
+        right: 10px;
+
+        padding: 20px;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        background: rgba(18, 10, 8, 0.95);
+
+        border: 1px solid var(--line);
+
+        border-radius: 20px;
+    }
+
+
+    .nav-links.open {
+        display: flex;
+    }
+
+
+    .menu-toggle {
+        display: block;
+    }
+
+
+    .hero {
+        grid-template-columns: 1fr;
+
+        padding-top: 140px;
+    }
+
+
+    .hero-dish {
+        height: 420px;
+
+        order: -1;
+    }
+
+
+    .hero-copy {
+        padding-bottom: 40px;
+    }
+
+
+    .menu-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+
+    .story {
+        grid-template-columns: 1fr;
+    }
+
+
+    .experience-dish {
+        width: 65%;
+
+        opacity: 0.55;
+    }
+
+
+    .visit-card {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+}
+
+
+/* =========================================================
+   28. MOBILE RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 620px) {
+
+    .nav-wrap {
+        padding: 10px;
+    }
+
+
+    .navbar {
+        padding: 10px 12px;
+    }
+
+
+    .brand-text b {
+        font-size: 13px;
+    }
+
+
+    .brand-text small {
+        font-size: 6px;
+    }
+
+
+    .brand-mark {
+        width: 40px;
+
+        height: 40px;
+    }
+
+
+    .section {
+        padding: 80px 6vw;
+    }
+
+
+    .hero {
+        padding-inline: 6vw;
+    }
+
+
+    .hero h1 {
+        font-size: 64px;
+    }
+
+
+    .hero-dish {
+        height: 320px;
+    }
+
+
+    .dish-tag {
+        left: 0;
+
+        bottom: 8%;
+
+        transform: scale(0.85);
+    }
+
+
+    .menu-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .section-heading {
+        display: block;
+    }
+
+
+    .section-heading > p {
+        margin-top: 20px;
+    }
+
+
+    .story-visual img {
+        height: 400px;
+    }
+
+
+    .floating-stamp {
+        right: -5px;
+    }
+
+
+    .experience-panel {
+        min-height: 600px;
+
+        padding: 35px;
+    }
+
+
+    .experience-dish {
+        width: 100%;
+
+        right: -25%;
+
+        bottom: 0;
+
+        opacity: 0.35;
+    }
+
+
+    .visit-card {
+        padding: 35px;
+    }
+
+
+    .visit-actions {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+
+    footer {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+}
